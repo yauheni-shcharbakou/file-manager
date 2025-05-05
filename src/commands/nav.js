@@ -14,14 +14,14 @@ export const cd = async (args, currentPath) => {
   const [path] = args;
 
   if (!path) {
-    throw new Error();
+    throw new Error('Path should be provided');
   }
 
   const potentialPath = getPath(currentPath, path);
   const pathStat = await stat(potentialPath);
 
   if (!pathStat.isDirectory()) {
-    throw new Error();
+    throw new Error('It is not directory');
   }
 
   process.chdir(potentialPath);
