@@ -1,5 +1,6 @@
-import { resolve, isAbsolute } from 'path';
+import { resolve } from 'path';
 import { stat, readdir } from 'fs/promises';
+import { getPath } from '../helpers/get-path.js';
 
 export const up = (_, currentPath) => {
   const potentialPath = resolve(currentPath, '..');
@@ -16,8 +17,7 @@ export const cd = async (args, currentPath) => {
     throw new Error();
   }
 
-  const resolveArgs = isAbsolute(path) ? [path] : [currentPath, path];
-  const potentialPath = resolve(...resolveArgs);
+  const potentialPath = getPath(currentPath, path);
   const pathStat = await stat(potentialPath);
 
   if (!pathStat.isDirectory()) {
