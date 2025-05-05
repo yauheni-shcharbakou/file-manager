@@ -14,7 +14,8 @@ export const cd = async (args, currentPath) => {
   const [path] = args;
 
   if (!path) {
-    throw new Error('Path should be provided');
+    console.error('Invalid input');
+    return;
   }
 
   const potentialPath = getPath(currentPath, path);

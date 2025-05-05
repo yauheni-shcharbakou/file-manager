@@ -7,7 +7,8 @@ export const hash = async (args, currentPath) => {
   const [path] = args;
 
   if (!path) {
-    throw new Error('Path should be provided');
+    console.error('Invalid input');
+    return;
   }
 
   const filePath = getPath(currentPath, path);
@@ -16,7 +17,7 @@ export const hash = async (args, currentPath) => {
   await pipeline(
     createReadStream(filePath, { encoding: 'utf-8' }),
     cheaper.setEncoding('hex'),
+    process.stdout,
+    { end: false },
   );
-
-  console.log(cheaper.read());
 };

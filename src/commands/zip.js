@@ -7,7 +7,8 @@ export const compress = async (args, currentPath) => {
   const [srcPath, destPath] = args;
 
   if (!srcPath || !destPath) {
-    throw new Error('Should be provided both src and destination path');
+    console.error('Invalid input');
+    return;
   }
 
   await pipeline(
@@ -21,7 +22,8 @@ export const decompress = async (args, currentPath) => {
   const [srcPath, destPath] = args;
 
   if (!srcPath || !destPath) {
-    throw new Error('Should be provided both src and destination path');
+    console.error('Invalid input');
+    return;
   }
 
   await pipeline(

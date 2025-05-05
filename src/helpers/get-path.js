@@ -1,5 +1,5 @@
-import { isAbsolute, relative } from 'path';
+import { isAbsolute, join } from 'path';
 
 export const getPath = (currentPath, path) => {
-  return isAbsolute(path) ? path : relative(currentPath, path);
+  return isAbsolute(path) ? path : join(currentPath, path);
 };
