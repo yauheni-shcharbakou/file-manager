@@ -1,9 +1,11 @@
 import { up, cd, ls } from './nav.js';
+import { os } from './os.js';
 
 const commandByName = {
   up,
   cd,
   ls,
+  os,
 };
 
 export const handleCommand = async (data, currentPath) => {
