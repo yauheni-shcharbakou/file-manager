@@ -1,6 +1,7 @@
 import { up, cd, ls } from './nav.js';
 import { os } from './os.js';
 import { hash } from './hash.js';
+import { compress, decompress } from './zip.js';
 
 const commandByName = {
   up,
@@ -8,6 +9,8 @@ const commandByName = {
   ls,
   os,
   hash,
+  compress,
+  decompress,
 };
 
 export const handleCommand = async (data, currentPath) => {
