@@ -1,6 +1,6 @@
 import { createReadStream } from 'fs';
 import { pipeline } from 'stream/promises';
-import { join } from 'path';
+import { isAbsolute, join } from 'path';
 import { createHash } from 'crypto';
 
 export const hash = async (args, currentPath) => {
@@ -10,7 +10,8 @@ export const hash = async (args, currentPath) => {
     throw new Error('Path should be provided');
   }
 
-  const filePath = join(currentPath, path);
+  const joinArgs = isAbsolute(path) ? [path] : [currentPath, path];
+  const filePath = join(...joinArgs);
   const cheaper = createHash('sha256');
 
   await pipeline(
